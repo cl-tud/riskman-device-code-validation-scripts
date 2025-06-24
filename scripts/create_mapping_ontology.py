@@ -29,8 +29,13 @@ def generate_turtle_rules(df, threshold):
         gmdn, emdn = row['GMDN'], row['EMDN']
         rule = f"""
 # GMDN: {gmdn} <-> EMDN: {emdn}        
-gmdn:{gmdn} owl:equivalentClass emdn:{emdn} .
+gmdn:{gmdn} rdfs:subClassOf emdn:{emdn} .
+emdn:{emdn} rdfs:subClassOf gmdn:{gmdn} .
 """
+#         rule = f"""
+# # GMDN: {gmdn} <-> EMDN: {emdn}        
+# gmdn:{gmdn} owl:equivalentClass emdn:{emdn} .
+# """
         turtle_rules.append(rule)
     return "\n".join(turtle_rules)
 
